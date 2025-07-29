@@ -14,7 +14,7 @@ app.post('/api/products',async (req, res) => {
   const product = req.body; // user will send this data
 
   if(!product.name || !product.price || !product.image) {
-    return res.status(400).json({ success: false, message: 'Please fill all the fields' });
+    return res.status(400).json({ success: false, message: "Please fill all the fields" });
   }
   const newProduct = new Product(product) // create a new product instance
 
@@ -37,10 +37,22 @@ app.delete('/api/products/:id', async (req, res) => {
     res.status(200).json({ success: true, message: 'Product deleted successfully' });
   } 
   catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: 'Server error' });
+    console.log("Error deleting product:", error);
+    res.status(500).json({ success: false, message: "Server error" });
   }
 });
+
+
+app.get('/api/products', async (req, res) => {
+  try {
+    const products = await Product.find(); // fetch all products from the database
+    res.status(200).json({ success: true, data: products });
+  } 
+  catch (error) {
+    console.log("Error fetching products:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }});
+
 
 //console.log(process.env.MONGO_URI);
 
