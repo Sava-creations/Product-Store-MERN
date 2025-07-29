@@ -53,6 +53,22 @@ app.get('/api/products', async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }});
 
+app.put('/api/products/:id', async (req, res) => {
+  const { id } = req.params; 
+  const updatedProduct = req.body; // get the updated product data from the request body
+
+  try {
+    const product = await Product.findByIdAndUpdate(id, updatedProduct, { new: true }); //findByIdAndUpdate returns the default document before update
+    if (!product) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+    res.status(200).json({ success: true, data: product });
+  } 
+  catch (error) {
+    console.log("Error updating product:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
 
 //console.log(process.env.MONGO_URI);
 
