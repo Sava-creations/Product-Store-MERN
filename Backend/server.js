@@ -1,11 +1,19 @@
 //entry point
 import express from 'express';
+import dotenv from 'dotenv';
+import { connectDB } from './config/db.js';
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 app.get('/', (req, res) => {
   res.send('Server is ready');
 });
 
+//console.log(process.env.MONGO_URI);
+
 app.listen(5000, () => {
-  console.log('Server is running on port 5000 Hello');
+  connectDB();
+  console.log('Server is running on port 5000');
 });
+//
