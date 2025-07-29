@@ -27,6 +27,20 @@ app.post('/api/products',async (req, res) => {
     }
 });
 
+app.delete('/api/products/:id', async (req, res) => {
+
+  const {id}= req.params; // get the product id from the request parameters
+  console.log("Product ID to delete:", id);
+
+  try {
+    await Product.findByIdAndDelete(id); // delete the product from the database
+    res.status(200).json({ success: true, message: 'Product deleted successfully' });
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
 
 //console.log(process.env.MONGO_URI);
 
@@ -34,4 +48,3 @@ app.listen(5000, () => {
   connectDB();
   console.log('Server is running on port 5000');
 });
-//
