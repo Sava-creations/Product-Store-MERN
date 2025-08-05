@@ -32,7 +32,7 @@ export const updateProduct = async (req, res) => {
   const { id } = req.params; 
   const updatedData = req.body; // get the updated product data from the request body
 
-  if (!mongoose.Types.ObjectId.isValid(id)) { //checking if the id is valid
+  if (!mongoose.Types.ObjectId.isValid(id)) { //checking if the id is valid to prevent unncessary database queries for invalid IDs
   return res.status(400).json({ success: false, message: 'Invalid product ID' }); 
 }
 
