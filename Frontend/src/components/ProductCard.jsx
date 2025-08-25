@@ -50,7 +50,7 @@ const ProductCard = ({ product }) => { //prop
           className="w-full h-32 object-cover rounded-md mb-3"
         />
         <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">{product.name}</h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-3">${product.price}</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-3">Rs.{product.price}</p>
         <div className="flex gap-3">
           <button className="px-3 py-1.5 rounded bg-yellow-500 text-white font-medium text-xs hover:bg-yellow-600 transition" onClick={handleEditClick}>Edit</button>
           <button className="px-3 py-1.5 rounded bg-red-600 text-white font-medium text-xs hover:bg-red-700 transition" onClick={() => handleDeleteProduct(product._id)}>Delete</button>
