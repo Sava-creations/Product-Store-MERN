@@ -1,0 +1,59 @@
+ # Node.js dependencies
+node_modules/
+
+# Logs
+logs/
+.env.local
+.env.development.local
+### Node.js & Vite & React & Common
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+
+### Logs
+logs/
+*.log
+npm-debug.log*
+Thumbs.db
+
+
+### Environment variables
+.env*
+.env.*
+
+### OS generated files
+.DS_Store
+Thumbs.db
+
+### IDE files
+.vscode/
+.idea/
+
+### Misc
+*.swp
+*.swo
+
+### Frontend/Backend build output
+Frontend/dist/
+Backend/dist/
+# Vite cache
+.vite/
+
+# Misc
+*.swp
+*.swo
+
+# Ignore coverage reports
+coverage/
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore frontend build
+Frontend/dist/
+
+# Ignore backend build
+Backend/dist/

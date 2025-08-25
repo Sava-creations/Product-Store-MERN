@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/product.route.js';
 
+// This is the main entry point for the backend server
+// It sets up Express, connects to the database, and starts the server
+// Routes are imported and used to handle API requests
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
