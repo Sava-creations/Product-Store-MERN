@@ -5,7 +5,7 @@ import { createProduct,getProducts, deleteProduct, updateProduct } from '../cont
 
 const router = express.Router();
 
-router.post('/',createProduct);
+router.post('/',createProduct);  //If the frontend sends a POST /api/products request → createProduct controller runs.
 
 router.delete('/:id', deleteProduct);
 

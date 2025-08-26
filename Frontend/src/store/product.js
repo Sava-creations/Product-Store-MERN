@@ -50,11 +50,6 @@ export const useProductStore = create((set) => ({
         } else {
             return { success: false, message: data.message };
         }
-
-
-
-
-
     },
 
     updateProduct: async (pid, updatedProduct) => {

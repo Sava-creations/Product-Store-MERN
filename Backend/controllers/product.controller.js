@@ -2,6 +2,8 @@
 // Each function talks to the database and sends a response to the client.
 // These are called 'controllers' in backend development.
 
+//logic for CRUD (Create, Read, Update, Delete).
+
 import Product from '../models/product.model.js';                             // Import the Product model
 import mongoose from 'mongoose';
 export const getProducts = async (req, res) => {
@@ -16,12 +18,12 @@ export const getProducts = async (req, res) => {
 };
 
 export const createProduct = async (req, res) => {
-  const product = req.body;                                                   // user will send this data
+  const product = req.body;                                                   // user will send this data frontend
 
   if(!product.name || !product.price || !product.image) {
     return res.status(400).json({ success: false, message: "Please fill all the fields" });
   }
-  const newProduct = new Product(product)                                     // create a new product instance
+  const newProduct = new Product(product)                                     // create a new product instance/document with key value pairs
 
     try {
         await newProduct.save();                                              // save the product to the database
@@ -34,14 +36,14 @@ export const createProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   const { id } = req.params; 
-  const updatedData = req.body;                                                // get the updated product data from the request body
+  const updatedData = req.body;                                                // get the updated product data from the request body that user will send from frontend
 
   if (!mongoose.Types.ObjectId.isValid(id)) {                                   //checking if the id is valid to prevent unncessary database queries for invalid IDs
   return res.status(400).json({ success: false, message: 'Invalid product ID' }); 
 }
 
   try {
-    const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, { new: true });            //findByIdAndUpdate returns the default document before update
+    const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, { new: true });            //findByIdAndUpdate returns the default document before update and with {new:true} it returns the updated document
     if (!updatedProduct) {
       return res.status(404).json({ success: false, message: 'Product not found' });                   //In case the ID is valid but not in DB
     }

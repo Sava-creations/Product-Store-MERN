@@ -7,8 +7,8 @@ const Navbar = () => {
 
   const handleToggleMode = () => {
     setIsDark((prev) => !prev);
-    document.documentElement.classList.toggle("dark");
-  };
+    document.documentElement.classList.toggle("dark");            //document.documentElement → this points to the <html> tag of your whole page.
+  };                                                              //.classList.toggle("dark") → adds or removes the class dark on the <html> element.
 
   return (
     <nav className="w-full bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-gray-800 shadow-md">
