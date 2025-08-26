@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useProductStore } from "../store/product";
 
-const ProductCard = ({ product }) => { //prop
+const ProductCard = ({ product }) => { //prop Receives one product object from HomePage
 
   const [updatedProduct, setUpdatedProduct] = useState(product);
   const [showModal, setShowModal] = useState(false);

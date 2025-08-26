@@ -6,7 +6,7 @@ import ProductCard from "../components/ProductCard";
 export default function HomePage() {
 	const {fetchProducts,products}=useProductStore();
 	useEffect(() => {
-		fetchProducts();
+		fetchProducts();           /// When HomePage loads, it calls fetchProducts()
 	}, [fetchProducts]);
 	console.log("Products in HomePage:", products); // Log products to verify they are being fetched
 
@@ -15,7 +15,7 @@ export default function HomePage() {
 		content = (
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl px-4">
 				{products.map((product) => (
-					<ProductCard key={product._id || product.id} product={product} />
+					<ProductCard key={product._id || product.id} product={product} /> //For each product in the global state, it renders a ProductCard component.
 				))}
 			</div>
 		);
