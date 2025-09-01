@@ -13,18 +13,17 @@ const CreatePage = () => {
 	const handleAddProduct = async (e) => {
 		e.preventDefault();
 		console.log("Adding product:", newProduct);
-		const { success, message 	} = await createProduct(newProduct); //product.js has success,message return
+		const { success, message 	} = await createProduct(newProduct); //calls the createProduct function
 		console.log("Success:",success)
 		console.log("Message:",message)
 
 		if (!success) {
-			// Handle error (e.g., show a notification to the user)
 			alert(`Error: ${message}`);
 			return;
 		}
 		else{
 			alert(`Success: ${message}`);
-			window.location.href = "/"; // Redirect to home page// Optionally, redirect to another page or show a success message
+			window.location.href = "/"; // Redirect to home page
 		}
 		// Clear the form
 		setNewProduct({ name: "", price: "", image: "" });
@@ -71,7 +70,7 @@ const CreatePage = () => {
 					</button>
 				</form>
 			</div>
-			{/* Link to homepage below the form box */}
+			
 			<Link
 				to="/"
 				className="mt-6 text-lg font-semibold text-blue-600 dark:text-blue-400 underline transition duration-200 hover:text-pink-600 dark:hover:text-pink-400 hover:scale-105"

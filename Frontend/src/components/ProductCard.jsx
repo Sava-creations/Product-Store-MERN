@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => { //prop Receives one product object from H
   const { deleteProduct , updateProduct} = useProductStore();
 
   const handleDeleteProduct = async (pid) => {
-    const { success, message } = await deleteProduct(pid);
+    const { success, message } = await deleteProduct(pid); //calls the deleteProduct function
     if (!success) {
       toast.error(`Error: ${message}`);
       return;
@@ -20,14 +20,14 @@ const ProductCard = ({ product }) => { //prop Receives one product object from H
   };
   // Open modal for editing
   const handleEditClick = () => {
-    setUpdatedProduct(product);
+    setUpdatedProduct(product);  //Closed modal without saving Now clicks Edit again → if we don’t reset, the modal will still show the old unsaved edits!
     setShowModal(true);
   };
 
   // Handle update submit
   const handleUpdateProduct = async (e) => {
-    e.preventDefault();
-    const { success, message } = await updateProduct(product._id, updatedProduct);
+    e.preventDefault();  //stop reloading
+    const { success, message } = await updateProduct(product._id, updatedProduct); //Calls the function updateProduct 
     setShowModal(false);
     if (!success) {
       toast.error(`Error: ${message}`);
@@ -67,8 +67,8 @@ const ProductCard = ({ product }) => { //prop Receives one product object from H
               <input
                 type="text"
                 placeholder="Product Name"
-                value={updatedProduct.name}               
-                onChange={e => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
+                value={updatedProduct.name}               //show previous value in input box
+                onChange={e => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}  //...updatedProduct → keeps all the existing properties  name: e.target.value → replaces only the name property
                 className="px-4 py-2 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
               />
               <input
