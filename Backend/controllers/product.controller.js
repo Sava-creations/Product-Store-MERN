@@ -1,11 +1,12 @@
 // This file contains functions that handle requests related to products.
-// Each function talks to the database and sends a response to the client.
+// Each function talks to the database and sends a response to the frontend.
 // These are called 'controllers' in backend development.
 
 //logic for CRUD (Create, Read, Update, Delete).
 
 import Product from '../models/product.model.js';                             // Import the Product model
 import mongoose from 'mongoose';
+
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();                                    // fetch all products from the database
@@ -17,8 +18,8 @@ export const getProducts = async (req, res) => {
   }
 };
 
-export const createProduct = async (req, res) => {
-  const product = req.body;                                                   // user will send this data frontend
+export const createProduct = async (req, res) => {                                                          
+  const product = req.body;                            // user will send this data frontend - request body
 
   if(!product.name || !product.price || !product.image) {
     return res.status(400).json({ success: false, message: "Please fill all the fields" });
@@ -35,30 +36,19 @@ export const createProduct = async (req, res) => {
 };
 
 export const updateProduct = async (req, res) => {
-  const { id } = req.params; 
-  const updatedData = req.body;                                                // get the updated product data from the request body that user will send from frontend
+  const { id } = req.params;                               // extract product id
+  const updatedData = req.body;                                                // extract updated product data from the request body that user will send from frontend
 
   if (!mongoose.Types.ObjectId.isValid(id)) {                                   //checking if the id is valid to prevent unncessary database queries for invalid IDs
   return res.status(400).json({ success: false, message: 'Invalid product ID' }); //24 character hex string
 }
 
-  try {
+  try {                                               //Mongoose searches for the product with that id and updates it if found.
     const updatedProduct = await Product.findByIdAndUpdate(id, updatedData, { new: true });            //findByIdAndUpdate returns the default document before update and with {new:true} it returns the updated document
     if (!updatedProduct) {
       return res.status(404).json({ success: false, message: 'Product not found' });                   //In case the ID is valid but not in DB
     }
     res.status(200).json({ success: true, data: updatedProduct });
-//   {"success": true,
-//   "data": {
-//     "_id": "64f1a3...",
-//     "name": "Updated Laptop",
-//     "price": 1500,
-//     "image": "newImage.png",
-//     "createdAt": "...",
-//     "updatedAt": "..."
-//   }
-// }
-
   } 
   catch (error) {            //db not reachable
     console.log("Error updating product:", error);
@@ -89,15 +79,3 @@ export const deleteProduct = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
-
-
-//   {
-//   "success": true,
-//   "data": {
-//     "_id": "64ab12...",
-//     "name": "iPhone",
-//     "price": "1000",
-//     "image": "https://...",
-//     "__v": 0
-//   }
-// }
