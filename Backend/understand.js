@@ -1,4 +1,4 @@
-Get
+//Get
 
 // [
 //     {
@@ -55,7 +55,7 @@ Get
 // }
 
 
-create 
+//create 
 
 // {
 //   "name": "iPhone",
@@ -77,7 +77,7 @@ create
 // }
 
 
-PUT /api/products/64fa9b7a1c2d5b3f5d123456
+//PUT /api/products/64fa9b7a1c2d5b3f5d123456
 // {                                     
 //   "name": "iPhone 16",
 //   "price": "1200",
@@ -107,7 +107,7 @@ PUT /api/products/64fa9b7a1c2d5b3f5d123456
 //   "message": "Product not found"
 // }
  
-Delete /api/products/64fa9b7a1c2d5b3f5d123456
+//Delete /api/products/64fa9b7a1c2d5b3f5d123456
 // {
 //   "success": true,
 //   "message": "Product deleted successfully"

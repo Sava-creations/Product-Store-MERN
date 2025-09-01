@@ -3,7 +3,7 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 
 const Navbar = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(false);       //isDark is a react state variable
 
   const handleToggleMode = () => {
     setIsDark((prev) => !prev);

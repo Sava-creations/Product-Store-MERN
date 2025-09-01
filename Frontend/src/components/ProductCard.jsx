@@ -4,8 +4,9 @@ import { useProductStore } from "../store/product";
 
 const ProductCard = ({ product }) => { //prop Receives one product object from HomePage
 
-  const [updatedProduct, setUpdatedProduct] = useState(product);
-  const [showModal, setShowModal] = useState(false);
+  const [updatedProduct, setUpdatedProduct] = useState(product);   //for editing
+  const [showModal, setShowModal] = useState(false); // show/hide modal
+  
   const { deleteProduct , updateProduct} = useProductStore();
 
   const handleDeleteProduct = async (pid) => {

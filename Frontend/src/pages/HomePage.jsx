@@ -4,9 +4,9 @@ import { useProductStore } from "../store/product";
 import ProductCard from "../components/ProductCard";
 
 export default function HomePage() {
-	const {fetchProducts,products}=useProductStore();
+	const {fetchProducts,products}=useProductStore();                                                            //gets both the products array and the fetchProducts function
 	useEffect(() => {
-		fetchProducts();           /// When HomePage loads, it calls fetchProducts()
+		fetchProducts();                                                                                         // When HomePage loads, it calls fetchProducts()
 	}, [fetchProducts]);
 	console.log("Products in HomePage:", products); // Log products to verify they are being fetched
 
