@@ -1,5 +1,6 @@
 //entry point
 import express from 'express';
+import path from 'path';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/product.route.js';
@@ -14,7 +15,17 @@ const PORT =process.env.PORT || 5000; // from env env file we re using PORT if w
 
 app.use(express.json()); // Middleware allows us to parse JSON request bodies
 
-app.use('/api/products', productRoutes); // Use 1 route 
+// Serve frontend static files
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'Frontend', 'dist')));
+        
+        // API routes
+        app.use('/api/products', productRoutes); // Use 1 route 
+        
+        // Catch-all middleware for SPA fallback (must be last)
+        app.use((req, res, next) => {
+          res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
+        });
 //this part will added to all HTTP requests to the product routes / means /api/products & /:id means /api/products/:id
 //console.log(process.env.MONGO_URI);
 
